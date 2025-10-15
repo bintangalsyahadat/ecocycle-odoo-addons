@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+  <record model="fastapi.endpoint" id="data_fastapi_endpoint_ecocycle_v1">
+    <field name="name">EcoCycle API v1</field>
+    <field name="app">ecocycle</field>
+    <field name="root_path">/api-v1</field>
+    <field name="user_id" ref="user_ecocycle_api"/>
+  </record>
+</odoo>
