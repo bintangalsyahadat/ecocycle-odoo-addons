@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+        <record id="list_waste_move" model="ir.ui.view">
+            <field name="name">Waste_move List View</field>
+            <field name="model">waste.move</field>
+            <field name="arch" type="xml">
+                <list string="Waste_move">
+                    <field name="operating_unit_id"/>
+                    <field name="category_id"/>
+                    <field name="date"/>
+                    <field name="type"/>
+                    <field name="quantity"/>
+                    <field name="state"/>
+                </list>
+            </field>
+        </record>
+
+        <record id="form_waste_move" model="ir.ui.view">
+            <field name="name">Waste_move Form View</field>
+            <field name="model">waste.move</field>
+            <field name="arch" type="xml">
+                <form string="Waste_move">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="operating_unit_id"/>
+                                <field name="category_id"/>
+                                <field name="date"/>
+                            </group>
+                            <group>
+                                <field name="type"/>
+                                <field name="quantity"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="search_waste_move" model="ir.ui.view">
+          <field name="name">Waste_move Search View</field>
+          <field name="model">waste.move</field>
+          <field name="arch" type="xml">
+              <search string="Waste_move">
+                <field name="category_id"/>
+                <filter name="incoming" string="Incoming" domain="[('type', '=', 'Incoming')]"/>
+                <filter name="outgoing" string="Outgoing" domain="[('type', '=', 'Outgoing')]"/>
+                <group>
+                    <filter name="group_by_operating_unit_id" string="Operating Unit" context="{'group_by': 'operating_unit_id'}"/>
+                    <filter name="group_by_category_id" string="Category" context="{'group_by': 'category_id'}"/>
+                    <filter name="group_by_type" string="Type" context="{'group_by': 'type'}"/>
+                    <filter name="group_by_state" string="Status" context="{'group_by': 'state'}"/>
+                </group>
+              </search>
+          </field>
+        </record>
+    </data>
+</odoo>

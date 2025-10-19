@@ -1,2 +1,9 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_ecocycle_base_ecocycle_base,ecocycle_base.ecocycle_base,model_ecocycle_base_ecocycle_base,base.group_user,1,1,1,1
+access_ecocycle_base_waste_category,Waste Category Access: CRUD,model_waste_category,base.group_user,1,1,1,1
+access_ecocycle_base_waste_category_pricelist,Waste Category Pricelist Access: CRUD,model_waste_category_pricelist,base.group_user,1,1,1,1
+access_ecocycle_base_waste_move,Waste Move Access: CRUD,model_waste_move,base.group_user,1,1,1,1
+access_ecocycle_base_payment_method,Payment Method Access: CRUD,model_payment_method,base.group_user,1,1,1,1
+access_ecocycle_base_delivery_method,Delivery Method Access: CRUD,model_delivery_method,base.group_user,1,1,1,1
+
+
+

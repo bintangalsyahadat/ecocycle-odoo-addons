@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+        <record id="list_waste_category" model="ir.ui.view">
+            <field name="name">Waste_category List View</field>
+            <field name="model">waste.category</field>
+            <field name="arch" type="xml">
+                <list string="Waste_category">
+                    <field name="name"/>
+                </list>
+            </field>
+        </record>
+
+        <record id="form_waste_category" model="ir.ui.view">
+            <field name="name">Waste_category Form View</field>
+            <field name="model">waste.category</field>
+            <field name="arch" type="xml">
+                <form string="Waste_category">
+                    <header>
+
+                    </header>
+                    <sheet>
+                        <field name="image" widget="image" class="oe_avatar oe_inline"/>
+                        <div class="oe_title oe_inline">
+                            <label for="name" class="oe_edit_only"/>
+                            <h1>
+                                <field name="name" placeholder="Plastic"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="description"/>
+                            </group>
+                        </group>
+
+                        <notebook>
+                            <page string="Prices">
+                                <field name="pricelist_ids">
+                                    <list editable="bottom">
+                                        <field name="operating_unit_id"/>
+                                        <field name="type"/>
+                                        <field name="price"/>
+                                    </list>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>

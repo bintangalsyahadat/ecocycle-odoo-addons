@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data noupdate="0">
+    <record id="action_window_waste_category" model="ir.actions.act_window">
+      <field name="name">Waste Categories</field>
+      <field name="type">ir.actions.act_window</field>
+      <field name="res_model">waste.category</field>
+      <field name="view_mode">list,form</field>
+      <field name="path">categories</field>
+    </record>
+
+    <record id="action_window_waste_category_pricelist" model="ir.actions.act_window">
+      <field name="name">Waste Category Prices</field>
+      <field name="type">ir.actions.act_window</field>
+      <field name="res_model">waste.category.pricelist</field>
+      <field name="view_mode">list,form</field>
+      <field name="path">category-prices</field>
+    </record>
+
+    <record id="action_window_waste_move" model="ir.actions.act_window">
+      <field name="name">Waste Move</field>
+      <field name="type">ir.actions.act_window</field>
+      <field name="res_model">waste.move</field>
+      <field name="view_mode">list</field>
+      <field name="path">waste-moves</field>
+    </record>
+
+    <record id="action_window_partner" model="ir.actions.act_window">
+      <field name="name">Partners</field>
+      <field name="type">ir.actions.act_window</field>
+      <field name="res_model">res.partner</field>
+      <field name="view_mode">list,form</field>
+      <field name="view_ids" eval="[(5, 0, 0),
+        (0, 0, {'view_mode': 'list', 'view_id': ref('ecocycle_base.list_res_partner')}),
+        (0, 0, {'view_mode': 'form', 'view_id': ref('ecocycle_base.form_res_partner')})]"
+      />
+      <field name="path">partners</field>
+    </record>
+
+    <record id="action_window_payment_method" model="ir.actions.act_window">
+      <field name="name">Payment Method</field>
+      <field name="type">ir.actions.act_window</field>
+      <field name="res_model">payment.method</field>
+      <field name="view_mode">list,form</field>
+      <field name="path">payment-methods</field>
+    </record>
+
+    <record id="action_window_delivery_method" model="ir.actions.act_window">
+      <field name="name">Delivery Method</field>
+      <field name="type">ir.actions.act_window</field>
+      <field name="res_model">delivery.method</field>
+      <field name="view_mode">list,form</field>
+      <field name="path">delivery-methods</field>
+    </record>
+
+  </data>
+</odoo>

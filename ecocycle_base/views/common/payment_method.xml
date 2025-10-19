@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data noupdate="0">
+    <record id="list_payment_method" model="ir.ui.view">
+      <field name="name">Payment_method List View</field>
+      <field name="model">payment.method</field>
+      <field name="arch" type="xml">
+        <list string="Payment_method" editable="bottom">
+          <field name="name"/>
+        </list>
+      </field>
+    </record>
+  </data>
+</odoo>

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
-    "name": """EcoCycle Base""",
-    "summary": """EcoCycle Base Module""",
+    "name": """EcoCycle Data Demo""",
+    "summary": """EcoCycle Data Demo Module""",
     "category": "Extra Tools",
     "version": "18.0.0.0.0",
     "development_status": "Alpha",  # Options: Alpha|Beta|Production/Stable|Mature
@@ -20,30 +20,25 @@
         'base',
 
         # third party addons
-        'code_backend_theme',
-        'hide_login_manage_databases_powered_by_odoo',
-        'kw_hide_discuss',
-        'web_favicon',
-        'web_window_title',
-        'operating_unit',
 
         # developed addons
+        'ecocycle_base',
     ],
     "data": [
         # group
         # 'security/res_groups.xml',
 
         # data
+        'data/operating_unit.xml',
+        'data/waste_category.xml',
+        'data/waste_category_pricelist.xml',
+        'data/delivery_method.xml',
+        'data/payment_method.xml',
 
         # global action
         # 'views/action/action.xml',
 
         # view
-        'views/common/waste_category.xml',
-        'views/common/waste_move.xml',
-        'views/common/res_partner.xml',
-        'views/common/payment_method.xml',
-        'views/common/delivery_method.xml',
 
         # qweb template
         # 'views/template/template.xml',
@@ -65,16 +60,16 @@
         # 'views/action/action_onboarding.xml',
 
         # action menu
-        'views/action/action_menu.xml',
+        # 'views/action/action_menu.xml',
 
         # action onboarding
         # 'views/action/action_onboarding.xml',
 
         # menu
-        'views/menu.xml',
+        # 'views/menu.xml',
 
         # security
-        'security/ir.model.access.csv',
+        # 'security/ir.model.access.csv',
         # 'security/ir.rule.csv',
 
         # data
@@ -87,25 +82,25 @@
     # https://www.odoo.com/documentation/master/developer/reference/frontend/assets.html
     # 'assets': {
     #     'web.assets_common': [
-    #         'ecocycle_base/static/lib/bootstrap/**/*',
-    #         'ecocycle_base/static/src/js/boot.js',
-    #         'ecocycle_base/static/src/js/webclient.js',
+    #         'ecocycle_data_demo/static/lib/bootstrap/**/*',
+    #         'ecocycle_data_demo/static/src/js/boot.js',
+    #         'ecocycle_data_demo/static/src/js/webclient.js',
     #     ],
         # 'web.assets_backend': [
-        #     'ecocycle_base/static/src/js/**/*',
+        #     'ecocycle_data_demo/static/src/js/**/*',
         # ],
     #     'web.assets_frontend': [
-    #         'ecocycle_base/static/src/xml/**/*',
+    #         'ecocycle_data_demo/static/src/xml/**/*',
     #     ],
     #     'web.assets_qweb': [
-    #         'ecocycle_base/static/src/xml/**/*',
+    #         'ecocycle_data_demo/static/src/xml/**/*',
     #     ],    # Add fields here
 
     #     'web.qunit_suite_tests': [
-    #         'ecocycle_base/static/src/js/webclient_tests.js',
+    #         'ecocycle_data_demo/static/src/js/webclient_tests.js',
     #     ],
     #     'web.qunit_mobile_suite_tests': [
-    #         'ecocycle_base/static/src/js/webclient_tests.js',
+    #         'ecocycle_data_demo/static/src/js/webclient_tests.js',
     #     ],
     # },
 

@@ -1,0 +1,8 @@
+from odoo import api, fields, models
+
+class DeliveryMethod(models.Model):
+    _name = 'delivery.method'
+    _description = 'Delivery Method'
+    
+    name = fields.Char(string="Name", required=True)
+    type = fields.Selection(string="Type", selection=[('sale', 'Sale'), ('purchase', 'Purchase')], required=True)

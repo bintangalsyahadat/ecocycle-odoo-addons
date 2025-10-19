@@ -3,9 +3,9 @@
 # from odoo import models, fields, api
 
 
-# class ecocycle_base(models.Model):
-#     _name = 'ecocycle_base.ecocycle_base'
-#     _description = 'ecocycle_base.ecocycle_base'
+# class ecocycle_data_demo(models.Model):
+#     _name = 'ecocycle_data_demo.ecocycle_data_demo'
+#     _description = 'ecocycle_data_demo.ecocycle_data_demo'
 
 #     name = fields.Char()
 #     value = fields.Integer()

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+        <!-- Operations -->
+        <menuitem id="menu_root_operations" name="Operations" sequence="10" web_icon="ecocycle_base,static/icons/stock.png"/>
+        <!-- Operations / Waste Category -->
+        <menuitem id="menu_item_waste_category" name="Waste Category" parent="menu_root_operations" action="action_window_waste_category" sequence="10"/>
+        <!-- Operations / Waste Move -->
+        <menuitem id="menu_item_waste_move" name="Waste Move" parent="menu_root_operations" action="action_window_waste_move" sequence="20"/>
+
+        <!-- Configurations -->
+        <menuitem id="menu_root_configurations" name="Configurations" sequence="50" web_icon="ecocycle_base,static/icons/settings.png"/>
+        <!-- Configurations / Partners -->
+        <menuitem id="menu_item_partner" name="Partners" parent="menu_root_configurations" action="action_window_partner" sequence="10"/>
+        <!-- Configurations / Payment Method -->
+        <menuitem id="menu_item_payment_method" name="Payment Method" parent="menu_root_configurations" action="action_window_payment_method" sequence="20"/>
+        <!-- Configurations / Delivery Method -->
+        <menuitem id="menu_item_delivery_method" name="Delivery Method" parent="menu_root_configurations" action="action_window_delivery_method" sequence="30"/>
+    </data>
+</odoo>

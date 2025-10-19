@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data noupdate="0">
+    <record id="list_delivery_method" model="ir.ui.view">
+      <field name="name">Delivery_method List View</field>
+      <field name="model">delivery.method</field>
+      <field name="arch" type="xml">
+        <list string="Delivery_method" editable="bottom">
+          <field name="name"/>
+          <field name="type"/>
+        </list>
+      </field>
+    </record>
+  </data>
+</odoo>
