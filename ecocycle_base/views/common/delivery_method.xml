@@ -3,7 +3,7 @@
   <data noupdate="0">
     <record id="list_delivery_method" model="ir.ui.view">
       <field name="name">Delivery_method List View</field>
-      <field name="model">delivery.method</field>
+      <field name="model">ecocycle.delivery.method</field>
       <field name="arch" type="xml">
         <list string="Delivery_method" editable="bottom">
           <field name="name"/>

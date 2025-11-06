@@ -14,6 +14,13 @@ class WasteCategoryPricelist(models.Model):
                                   string="Category", required=True, ondelete="restrict", index=True)
     price = fields.Float(string="Price", required=True)
 
+    _sql_constraints = [
+        (
+            'unique_ou_category_type',
+            'unique(operating_unit_id, category_id, type)',
+            'Combination of Operating Unit, Category, and Type must be unique!'
+        ),
+    ]
 
     @api.depends('operating_unit_id', 'category_id')
     def _compute_name(self):

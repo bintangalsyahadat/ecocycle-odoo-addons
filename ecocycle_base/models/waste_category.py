@@ -39,3 +39,15 @@ class WasteCategory(models.Model):
             rec.stock_move_out = move_out
             rec.stock_forecasted = (
                 move_in - move_out) + quants_forecasted
+
+    def get_price(self, type, operating_unit):
+        price = 0
+
+        price_from_pricelist = self.pricelist_ids.filtered(
+            lambda x: x.operating_unit_id == operating_unit and x.type == type
+        )
+        
+        if price_from_pricelist:
+            price = price_from_pricelist[0].price
+            
+        return price

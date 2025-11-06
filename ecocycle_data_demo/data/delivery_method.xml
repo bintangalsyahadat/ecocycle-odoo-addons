@@ -2,54 +2,54 @@
 <odoo>
     <data noupdate="1">
         <!-- Delivery Methods (Purchase / User → Company) -->
-        <record model="delivery.method" id="delivery_method_pickup">
+        <record model="ecocycle.delivery.method" id="delivery_method_pickup">
             <field name="name">Pickup by Company</field>
             <field name="type">purchase</field>
         </record>
 
-        <record model="delivery.method" id="delivery_method_drop_off">
+        <record model="ecocycle.delivery.method" id="delivery_method_drop_off">
             <field name="name">Drop-off at Collection Point</field>
             <field name="type">purchase</field>
         </record>
 
-        <record model="delivery.method" id="delivery_method_partner_courier">
+        <record model="ecocycle.delivery.method" id="delivery_method_partner_courier">
             <field name="name">Partner Courier</field>
             <field name="type">purchase</field>
         </record>
 
-        <record model="delivery.method" id="delivery_method_self_delivery">
+        <record model="ecocycle.delivery.method" id="delivery_method_self_delivery">
             <field name="name">Self Delivery</field>
             <field name="type">purchase</field>
         </record>
 
-        <record model="delivery.method" id="delivery_method_scheduled_collection">
+        <record model="ecocycle.delivery.method" id="delivery_method_scheduled_collection">
             <field name="name">Scheduled Collection</field>
             <field name="type">purchase</field>
         </record>
 
 
         <!-- Delivery Methods (Sale / Company → Customer) -->
-        <record model="delivery.method" id="delivery_method_jne">
+        <record model="ecocycle.delivery.method" id="delivery_method_jne">
             <field name="name">JNE Express</field>
             <field name="type">sale</field>
         </record>
 
-        <record model="delivery.method" id="delivery_method_jnt">
+        <record model="ecocycle.delivery.method" id="delivery_method_jnt">
             <field name="name">J&amp;T Express</field>
             <field name="type">sale</field>
         </record>
 
-        <record model="delivery.method" id="delivery_method_sicepat">
+        <record model="ecocycle.delivery.method" id="delivery_method_sicepat">
             <field name="name">SiCepat</field>
             <field name="type">sale</field>
         </record>
 
-        <record model="delivery.method" id="delivery_method_pos">
+        <record model="ecocycle.delivery.method" id="delivery_method_pos">
             <field name="name">POS Indonesia</field>
             <field name="type">sale</field>
         </record>
 
-        <record model="delivery.method" id="delivery_method_tiki">
+        <record model="ecocycle.delivery.method" id="delivery_method_tiki">
             <field name="name">TIKI</field>
             <field name="type">sale</field>
         </record>

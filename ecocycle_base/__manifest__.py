@@ -20,7 +20,7 @@
         'base',
 
         # third party addons
-        'code_backend_theme',
+        # 'code_backend_theme',
         'hide_login_manage_databases_powered_by_odoo',
         'kw_hide_discuss',
         'web_favicon',
@@ -34,6 +34,7 @@
         # 'security/res_groups.xml',
 
         # data
+        'data/ir_sequence.xml',
 
         # global action
         # 'views/action/action.xml',

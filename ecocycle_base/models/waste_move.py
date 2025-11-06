@@ -13,3 +13,14 @@ class WasteMove(models.Model):
     quantity = fields.Float(string="Quantity", required=False)
     state = fields.Selection(string="Status", selection=[('forecasted', 'Forecasted'), (
         'done', 'Done'), ('cancel', 'Cancelled')], required=True, default="forecasted")
+    waste_picking_id = fields.Many2one(
+        comodel_name="waste.picking", string="Waste Picking", required=False, ondelete="cascade", index=True)
+    
+    
+    def action_done(self):
+        for record in self:
+            record.state = 'done'
+            
+    def action_cancel(self):
+        for record in self:
+            record.state = 'cancel'

@@ -1,7 +1,7 @@
 from odoo import api, fields, models
 
 class DeliveryMethod(models.Model):
-    _name = 'delivery.method'
+    _name = 'ecocycle.delivery.method'
     _description = 'Delivery Method'
     
     name = fields.Char(string="Name", required=True)
