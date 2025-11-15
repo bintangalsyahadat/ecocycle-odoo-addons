@@ -67,8 +67,8 @@
         # 'views/menu.xml',
 
         # security
-        # 'security/ir.model.access.csv',
-        # 'security/ir.rule.csv',
+        'security/ir.model.access.csv',
+        'security/ir.rule.csv',
 
         # data
     ],

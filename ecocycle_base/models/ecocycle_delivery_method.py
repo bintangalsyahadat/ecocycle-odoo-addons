@@ -5,4 +5,5 @@ class DeliveryMethod(models.Model):
     _description = 'Delivery Method'
     
     name = fields.Char(string="Name", required=True)
+    description = fields.Char(string="Description", required=False)
     type = fields.Selection(string="Type", selection=[('sale', 'Sale'), ('purchase', 'Purchase')], required=True)

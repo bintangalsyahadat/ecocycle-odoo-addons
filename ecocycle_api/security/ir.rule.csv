@@ -1,0 +1,3 @@
+id,name,model_id:id,domain_force,global,groups:id,perm_read,perm_write,perm_create,perm_unlink
+rule_access_res_partner_api,Res Partner Rule for API,ecocycle_api.model_res_partner,[],,ecocycle_api.group_ecocycle_api,1,1,1,0
+rule_access_operating_unit_api,Operating Unit Rule for API,ecocycle_api.model_operating_unit,[],,ecocycle_api.group_ecocycle_api,1,0,0,0

@@ -6,3 +6,4 @@ class PaymentMethod(models.Model):
     _description = 'Payment Method'
 
     name = fields.Char(string="Name", required=True)
+    description = fields.Char(string="Description", required=False)

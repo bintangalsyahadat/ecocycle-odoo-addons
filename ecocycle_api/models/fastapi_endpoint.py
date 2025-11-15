@@ -3,6 +3,9 @@ import logging
 
 from odoo import models, fields, api, _
 from odoo.exceptions import UserError, ValidationError
+from ..utils.middleware import add_cors_middleware
+from starlette.middleware import Middleware
+from fastapi.middleware.cors import CORSMiddleware
 
 _logger = logging.getLogger(__name__)
 
@@ -20,3 +23,18 @@ class FastapiEndpoint(models.Model):
             return [ecocycle_router]
         return super()._get_fastapi_routers()
 
+    def _get_fastapi_app_middlewares(self):
+        middlewares = super()._get_fastapi_app_middlewares()
+
+        if self.app == "ecocycle":
+            middlewares.append(
+                Middleware(
+                    CORSMiddleware,
+                    allow_origins=["http://localhost:3000"],
+                    allow_credentials=True,
+                    allow_methods=["*"],
+                    allow_headers=["*"],
+                )
+            )
+
+        return middlewares

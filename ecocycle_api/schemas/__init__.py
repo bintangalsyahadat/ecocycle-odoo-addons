@@ -1,0 +1,6 @@
+from . import base
+from . import res_partner
+from . import operating_unit
+from . import waste_category
+from . import delivery_method
+from . import payment_method
