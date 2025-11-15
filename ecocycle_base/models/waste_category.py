@@ -6,8 +6,9 @@ class WasteCategory(models.Model):
     _description = 'Waste Category'
 
     name = fields.Char(string="Name", required=True)
-    description = fields.Text(string="Description", required=False)
+    description = fields.Char(string="Description", required=False)
     image = fields.Binary(string="Image")
+    price = fields.Float(string="Price", required=True)
     pricelist_ids = fields.One2many(comodel_name="waste.category.pricelist",
                                     inverse_name="category_id", string="Pricelist", required=False)
     move_ids = fields.One2many(comodel_name="waste.move", inverse_name="category_id", string="Moves", required=False)

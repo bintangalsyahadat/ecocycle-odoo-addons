@@ -30,10 +30,15 @@
                         <group>
                             <group>
                                 <field name="description"/>
+                                <label for="price" class="oe_edit_only"/>
+                                <div>
+                                    <field name="price" class="oe_inline"/>
+                                    <span> / kg</span>
+                                </div>
                             </group>
                         </group>
 
-                        <notebook>
+                        <!-- <notebook>
                             <page string="Prices">
                                 <field name="pricelist_ids">
                                     <list editable="bottom">
@@ -43,7 +48,7 @@
                                     </list>
                                 </field>
                             </page>
-                        </notebook>
+                        </notebook> -->
                     </sheet>
                 </form>
             </field>

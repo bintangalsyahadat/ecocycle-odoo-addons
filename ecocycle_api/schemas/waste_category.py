@@ -7,6 +7,7 @@ from odoo.addons.ecocycle_api.schemas.base import OdooEntity, RelatedOdooEntity
 class WasteCategory(OdooEntity):
     name: str = Field(serialization_alias="name")
     description: str = Field(serialization_alias="description")
+    price: float = Field(serialization_alias="price")
     image: Optional[str] = Field(serialization_alias="image")
 
 
