@@ -7,3 +7,4 @@ from odoo.addons.ecocycle_api.schemas.base import OdooEntity, RelatedOdooEntity
 class OperatingUnit(OdooEntity):
     code: str = Field(serialization_alias="code")
     name: str = Field(serialization_alias="name")
+    partner_id: RelatedOdooEntity = Field(serialization_alias="partner_id")
