@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data noupdate="0">
+    <record id="action_window_purchase_transaction" model="ir.actions.act_window">
+      <field name="name">Purchase Transaction</field>
+      <field name="type">ir.actions.act_window</field>
+      <field name="res_model">purchase.transaction</field>
+      <field name="view_mode">list,form</field>
+      <field name="path">purchase-transaction</field>
+    </record>
+  </data>
+</odoo>

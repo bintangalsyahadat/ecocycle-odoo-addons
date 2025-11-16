@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data noupdate="0">
+    <record id="form_picking_process" model="ir.ui.view">
+      <field name="name">Picking Process Form View</field>
+      <field name="model">waste.picking</field>
+      <field name="arch" type="xml">
+        <form string="Picking Process">
+          <sheet>
+            <!-- <div class="oe_title">
+              <label for="name" class="oe_edit_only"/>
+              <h1>
+                <field name="name" readonly="1"/>
+              </h1>
+            </div>   -->
+            <group>
+              <group>
+                <field name="purchase_transaction_id" invisible="not purchase_transaction_id" string="Transaction" readonly="1"/>
+                <field name="date"/>
+              </group>
+              <group>
+                <field name="partner_id" readonly="1"/>
+                <field name="operating_unit_id" readonly="1"/>
+              </group>
+            </group>
+            <notebook>
+              <page string="Lines">
+                <field name="waste_move_ids">
+                    <list editable="bottom" create="0">
+                        <field name="category_id" string="Waste Category" readonly="1"/>
+                        <field name="quantity" readonly="1"/>
+                        <field name="valid_qty"/>
+                    </list>
+                </field>
+              </page>
+            </notebook>
+          </sheet>
+          <footer>
+            <button name="action_done" type="object" string="Validate" class="btn-primary"/>
+            <button string="Cancel" class="btn-secondary" special="cancel"/>
+          </footer>
+        </form>
+      </field>
+    </record>
+  </data>
+</odoo>

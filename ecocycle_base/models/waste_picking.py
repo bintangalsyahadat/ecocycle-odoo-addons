@@ -17,17 +17,25 @@ class WastePicking(models.Model):
         ('done', 'Done'),
         ('cancel', 'Cancelled'),
     ], required=True, default="draft")
+    
+    @api.model
+    def create(self, values):
+        res = super(WastePicking, self).create(values)
+        res.action_confirm()
+        return res
 
     def action_confirm(self):
         for rec in self:
             if rec.state == 'draft':
                 rec.state = 'confirm'
-                if rec.purchase_transaction_id:
-                    rec.name = self.env['ir.sequence'].next_by_code(
-                        'waste.picking.in') or False
-                else:
-                    rec.name = self.env['ir.sequence'].next_by_code(
-                        'waste.picking.out') or False
+                
+                if not rec.name:
+                    if rec.purchase_transaction_id:
+                        rec.name = self.env['ir.sequence'].next_by_code(
+                            'waste.picking.in') or False
+                    else:
+                        rec.name = self.env['ir.sequence'].next_by_code(
+                            'waste.picking.out') or False
 
     def action_done(self):
         for rec in self:

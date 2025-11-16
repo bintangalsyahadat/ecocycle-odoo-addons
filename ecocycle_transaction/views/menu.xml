@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+        <!-- Transaction -->
+        <menuitem id="menu_root_ecocycle_transaction" name="Transaction" sequence="15" web_icon="ecocycle_transaction,static/icons/transaction.png"/>
+        <!-- Transaction / Purchase -->
+        <menuitem id="menu_item_purchase_transaction" name="Purchase" parent="menu_root_ecocycle_transaction" action="action_window_purchase_transaction" sequence="10"/>
+        <!-- Transaction / Sale -->
+        <!-- <menuitem id="menu_item_sale_transaction" name="Sale" parent="menu_root_ecocycle_transaction" action="action_window_sale_transaction" sequence="20"/> -->
+    </data>
+</odoo>

@@ -9,6 +9,7 @@
           <field name="name"/>
           <field name="description"/>
           <field name="type"/>
+          <field name="is_self_service"/>
         </list>
       </field>
     </record>

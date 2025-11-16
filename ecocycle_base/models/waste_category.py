@@ -27,14 +27,14 @@ class WasteCategory(models.Model):
                 if move.operating_unit_id.id in self.env.user.operating_unit_ids.ids:
                     if move.state == 'done':
                         if move.type == 'incoming':
-                            moves_done_in += move.quantity
+                            move_in += move.valid_qty
                         if move.type == 'outgoing':
-                            move_out += move.quantity
+                            move_out += move.valid_qty
                     if move.state == 'forecasted':
                         if move.type == 'incoming':
-                            quants_forecasted += move.quantity
+                            quants_forecasted += move.valid_qty
                         if move.type == 'outgoing':
-                            quants_forecasted -= move.quantity
+                            quants_forecasted -= move.valid_qty
                     
             rec.stock_move_in = move_in
             rec.stock_move_out = move_out
@@ -62,14 +62,14 @@ class WasteCategory(models.Model):
             if move.operating_unit_id.id == operating_unit.id:
                 if move.state == 'done':
                     if move.type == 'incoming':
-                        moves_done_in += move.quantity
+                        move_in += move.valid_qty
                     if move.type == 'outgoing':
-                        move_out += move.quantity
+                        move_out += move.valid_qty
                 if move.state == 'forecasted':
                     if move.type == 'incoming':
-                        quants_forecasted += move.quantity
+                        quants_forecasted += move.valid_qty
                     if move.type == 'outgoing':
-                        quants_forecasted -= move.quantity
+                        quants_forecasted -= move.valid_qty
         
         return {
             'qty_forecasted': (move_in - move_out) + quants_forecasted,
