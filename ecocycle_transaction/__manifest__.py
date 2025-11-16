@@ -36,6 +36,7 @@
 
         # view
         'views/common/purchase_transaction.xml',
+        'views/common/sale_transaction.xml',
         'views/common/picking_process.xml',
 
         # qweb template

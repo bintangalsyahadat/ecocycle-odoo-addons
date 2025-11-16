@@ -7,6 +7,9 @@
             <field name="arch" type="xml">
                 <list string="Waste_category">
                     <field name="name"/>
+                    <field name="description"/>
+                    <field name="sales_price"/>
+                    <field name="purchase_price"/>
                 </list>
             </field>
         </record>
@@ -30,9 +33,14 @@
                         <group>
                             <group>
                                 <field name="description"/>
-                                <label for="price" class="oe_edit_only"/>
+                                <label for="sales_price" class="oe_edit_only"/>
                                 <div>
-                                    <field name="price" class="oe_inline"/>
+                                    <field name="sales_price" class="oe_inline"/>
+                                    <span> / kg</span>
+                                </div>
+                                <label for="purchase_price" class="oe_edit_only"/>
+                                <div>
+                                    <field name="purchase_price" class="oe_inline"/>
                                     <span> / kg</span>
                                 </div>
                             </group>

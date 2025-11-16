@@ -11,6 +11,7 @@ class WastePicking(models.Model):
                            default=fields.Datetime.now)
     operating_unit_id = fields.Many2one(comodel_name="operating.unit", string="Operating Unit", required=True, ondelete="restrict", index=True)
     waste_move_ids = fields.One2many(comodel_name="waste.move", inverse_name="waste_picking_id", string="Waste Picking", required=False)
+    delivery_method_id = fields.Many2one(comodel_name="ecocycle.delivery.method", string="Delivery Method", required=False, ondelete="restrict", index=True)
     state = fields.Selection(string="Status", selection=[
         ('draft', 'Draft'),
         ('confirm', 'Confirmed'),

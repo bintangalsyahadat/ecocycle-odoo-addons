@@ -6,6 +6,6 @@
         <!-- Transaction / Purchase -->
         <menuitem id="menu_item_purchase_transaction" name="Purchase" parent="menu_root_ecocycle_transaction" action="action_window_purchase_transaction" sequence="10"/>
         <!-- Transaction / Sale -->
-        <!-- <menuitem id="menu_item_sale_transaction" name="Sale" parent="menu_root_ecocycle_transaction" action="action_window_sale_transaction" sequence="20"/> -->
+        <menuitem id="menu_item_sale_transaction" name="Sales" parent="menu_root_ecocycle_transaction" action="action_window_sale_transaction" sequence="20"/>
     </data>
 </odoo>

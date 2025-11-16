@@ -8,5 +8,15 @@
       <field name="view_mode">list,form</field>
       <field name="path">purchase-transaction</field>
     </record>
+
+    <record id="action_window_sale_transaction" model="ir.actions.act_window">
+      <field name="name">Sales Transaction</field>
+      <field name="type">ir.actions.act_window</field>
+      <field name="res_model">sale.transaction</field>
+      <field name="view_mode">list,form</field>
+      <field name="path">sales-transaction</field>
+    </record>
+
+    
   </data>
 </odoo>

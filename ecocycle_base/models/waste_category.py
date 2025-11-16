@@ -8,7 +8,11 @@ class WasteCategory(models.Model):
     name = fields.Char(string="Name", required=True)
     description = fields.Char(string="Description", required=False)
     image = fields.Binary(string="Image")
-    price = fields.Float(string="Price", required=True)
+    
+    # TODO: update to use waste.category.pricelist
+    sales_price = fields.Float(string=" Sales Price", required=False)
+    purchase_price = fields.Float(string="Purchase Price", required=False)
+    
     pricelist_ids = fields.One2many(comodel_name="waste.category.pricelist",
                                     inverse_name="category_id", string="Pricelist", required=False)
     move_ids = fields.One2many(comodel_name="waste.move", inverse_name="category_id", string="Moves", required=False)
@@ -41,17 +45,17 @@ class WasteCategory(models.Model):
             rec.stock_forecasted = (
                 move_in - move_out) + quants_forecasted
 
-    def get_price(self, type, operating_unit):
-        price = 0
+    # def get_price(self, type, operating_unit):
+    #     price = 0
 
-        price_from_pricelist = self.pricelist_ids.filtered(
-            lambda x: x.operating_unit_id == operating_unit and x.type == type
-        )
+    #     price_from_pricelist = self.pricelist_ids.filtered(
+    #         lambda x: x.operating_unit_id == operating_unit and x.type == type
+    #     )
         
-        if price_from_pricelist:
-            price = price_from_pricelist[0].price
+    #     if price_from_pricelist:
+    #         price = price_from_pricelist[0].price
             
-        return price
+    #     return price
     
     def get_stock(self, operating_unit):
         move_in = 0

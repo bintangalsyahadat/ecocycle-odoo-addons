@@ -1,35 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data noupdate="0">
-        <record id="list_purchase_transaction" model="ir.ui.view">
-            <field name="name">Purchase_transaction List View</field>
-            <field name="model">purchase.transaction</field>
+        <record id="list_sale_transaction" model="ir.ui.view">
+            <field name="name">Sales_transaction List View</field>
+            <field name="model">sale.transaction</field>
             <field name="arch" type="xml">
-                <list string="Purchase_transaction">
+                <list string="Sales_transaction">
                     <field name="name" string="Name"/>
                     <field name="date" string="Date"/>
                     <field name="partner_id" string="Partner"/>
-                    <field name="estimate_total_amount" string="Estimate Total Amount"/>
                     <field name="total_amount" string="Total Amount"/>
                     <field name="operating_unit_id" string="Operating Unit"/>
-                    <field name="state" string="Status" widget="badge" decoration-success="state == 'purchased'" 
-                        decoration-danger="state == 'reject'" decoration-info="state == 'draft'"
-                        decoration-primary="state == 'waiting_approval'" decoration-warning="state == 'waiting_process'"/>
+                    <field name="state" string="Status" widget="badge" decoration-success="state == 'sale'" 
+                        decoration-info="state == 'draft'" decoration-primary="state == 'waiting_payment'" 
+                        decoration-warning="state == 'waiting_process'"/>
                 </list>
             </field>
         </record>
 
-        <record id="form_purchase_transaction" model="ir.ui.view">
-            <field name="name">Purchase_transaction Form View</field>
-            <field name="model">purchase.transaction</field>
+        <record id="form_sale_transaction" model="ir.ui.view">
+            <field name="name">Sales_transaction Form View</field>
+            <field name="model">sale.transaction</field>
             <field name="arch" type="xml">
-                <form string="Purchase_transaction">
+                <form string="Sales_transaction">
                     <header>
                         <button name="action_confirm" string="Confirm" class="oe_highlight" type="object" invisible="state != 'draft'"/>
-                        <button name="action_approve" string="Approve" class="oe_highlight" type="object" invisible="state != 'waiting_approval'"/>
-                        <button name="action_reject" string="Reject" type="object" invisible="state != 'waiting_approval'"/>
                         <button name="action_process" string="Process" class="oe_highlight" type="object" invisible="state != 'waiting_process'"/>
-                        <field name="state" widget="statusbar" statusbar_visible="draft,waiting_approval,waiting_process,purchased"/>
+                        <field name="state" widget="statusbar" statusbar_visible="draft,waiting_payment,waiting_process,sale"/>
                     </header>
                     <sheet>
                         <!-- <div class="oe_button_box" name="button_box">
@@ -52,9 +49,6 @@
                             </group>
                             <group>
                                 <field name="date" widget="date" readonly="state != 'draft'"/>
-                                <field name="scheduled_date" invisible="not delivery_method_id or is_self_service or state == 'draft'" 
-                                    required="not is_self_service and state == 'waiting_approval'" 
-                                    readonly="state != 'waiting_approval'"/>
                                 <field name="delivery_address_id" invisible="not delivery_method_id or is_self_service" 
                                     readonly="state != 'draft'"/>
                                 <field name="note" readonly="state != 'draft'"/>
@@ -69,9 +63,7 @@
                                         <field name="waste_category_id"/>
                                         <field name="quantity" string="Quantity"/>
                                         <field name="unit_price" string="Unit Price"/>
-                                        <field name="estimate_total_price" string="Estimate Total Price"/>
-                                        <field name="valid_qty" column_invisible="parent.state in ['draft', 'waiting_approval']"/>
-                                        <field name="total_price" column_invisible="parent.state in ['draft', 'waiting_approval']" string="Total Price"/>
+                                        <field name="total_price" string="Total Price"/>
                                     </list>
                                 </field>
                             </page>
