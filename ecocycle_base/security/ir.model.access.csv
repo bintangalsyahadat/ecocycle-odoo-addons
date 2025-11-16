@@ -6,7 +6,8 @@ access_waste_picking,Waste Picking Access: CRUD,model_waste_picking,base.group_u
 access_payment_method,Payment Method Access: CRUD,model_ecocycle_payment_method,base.group_user,1,1,1,1
 access_delivery_method,Delivery Method Access: CRUD,model_ecocycle_delivery_method,base.group_user,1,1,1,1
 access_coin_history,Coin History Access: CRUD,model_ecocycle_coin_history,base.group_user,1,1,1,1
-access_point_history,Point History Access: CRUD,model_ecocycle_point_history,base.group_user,1,1,1,1
+access_daily_check_point_history,Point History Access: CRUD,model_ecocycle_point_history,base.group_user,1,1,1,1
+access_daily_check_point,Daily Check-In Point Access: CRUD,model_daily_check_point,base.group_user,1,1,1,1
 
 
 

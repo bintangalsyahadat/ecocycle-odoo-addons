@@ -9,14 +9,15 @@ class ResPartner(models.Model):
     point_history_ids = fields.One2many(comodel_name="ecocycle.point.history", inverse_name="partner_id", string="Point History", required=False)
     total_coin = fields.Float(string="Total Coin", required=False, compute="_compute_total_coin", store=True)
     total_point = fields.Float(string="Total Point", required=False, compute="_compute_total_point", store=True)
+    is_already_daily_checkin = fields.Boolean(string="Is Already Daily Checkin")
 
     @api.depends("coin_history_ids")
     def _compute_total_coin(self):
         for record in self:
-            record.total_coin = sum(record.coin_history_ids.mapped("coin"))
+            record.total_coin = sum(record.coin_history_ids.mapped("amount"))
 
     @api.depends("point_history_ids")
     def _compute_total_point(self):
         for record in self:
-            record.total_point = sum(record.point_history_ids.mapped("point"))
+            record.total_point = sum(record.point_history_ids.mapped("amount"))
     

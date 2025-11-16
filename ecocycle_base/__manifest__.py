@@ -45,6 +45,10 @@
         'views/common/res_partner.xml',
         'views/common/payment_method.xml',
         'views/common/delivery_method.xml',
+        'views/common/daily_check_point.xml',
+
+        # qweb
+        # 'views/template/template.xml',
 
         # qweb template
         # 'views/template/template.xml',

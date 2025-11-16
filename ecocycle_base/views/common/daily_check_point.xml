@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data noupdate="0">
+    <record id="list_daily_check_point" model="ir.ui.view">
+      <field name="name">Daily_check_point List View</field>
+      <field name="model">daily.check.point</field>
+      <field name="arch" type="xml">
+        <list string="Daily_check_point" editable="bottom">
+          <field name="sequence"/>
+          <field name="point"/>
+          <field name="is_final"/>
+        </list>
+      </field>
+    </record>
+  </data>
+</odoo>

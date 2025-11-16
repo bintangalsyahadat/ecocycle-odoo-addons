@@ -52,5 +52,12 @@
       <field name="path">delivery-methods</field>
     </record>
 
+    <record id="action_window_daily_check_point" model="ir.actions.act_window">
+      <field name="name">Daily Check Point</field>
+      <field name="type">ir.actions.act_window</field>
+      <field name="res_model">daily.check.point</field>
+      <field name="view_mode">list,form</field>
+      <field name="path">daily-check-points</field>
+    </record>
   </data>
 </odoo>
