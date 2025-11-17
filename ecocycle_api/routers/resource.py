@@ -73,6 +73,21 @@ def update_user(
     return SingleRecord[ResPartner](
         result=ResPartner.model_validate(partner),
     )
+    
+
+@resource_router.post("/res/user/{api_id}/check")
+def user_daily_check(
+    api_id: str,
+    env: Annotated[Environment, Depends(auth_jwt_authenticated_odoo_env)],
+):
+    
+    domain = ['|', ('api_id', '=', api_id), ('firebase_uuid', '=', api_id)]
+    user = env['res.partner'].search(domain, limit=1)
+    daily_check = user.sudo().action_daily_check() or False
+    
+    return {
+        'success': daily_check
+    }
 
 
 @resource_router.get("/res/operating-units", response_model=PaginatedRecords[OperatingUnit])
