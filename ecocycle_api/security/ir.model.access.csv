@@ -5,5 +5,11 @@ access_api_operating_unit,Access API for Operating Unit,ecocycle_api.model_opera
 access_api_waste_category,Access API for Waste Category,ecocycle_api.model_waste_category,ecocycle_api.group_ecocycle_api,1,0,0,0
 access_api_ecocycle_delivery_method,Access API for Delivery Method,ecocycle_api.model_ecocycle_delivery_method,ecocycle_api.group_ecocycle_api,1,0,0,0
 access_api_ecocycle_payment_method,Access API for Payment Method,ecocycle_api.model_ecocycle_payment_method,ecocycle_api.group_ecocycle_api,1,0,0,0
+access_api_waste_picking,Access API for Waste Picking,ecocycle_api.model_waste_picking,ecocycle_api.group_ecocycle_api,1,0,0,0
+access_api_purchase_transaction,Access API for Purchase Transaction,ecocycle_api.model_purchase_transaction,ecocycle_api.group_ecocycle_api,1,1,1,0
+access_api_purchase_transaction_item,Access API for Purchase Transaction Item,ecocycle_api.model_purchase_transaction_item,ecocycle_api.group_ecocycle_api,1,1,1,0
+access_api_sale_transaction,Access API for Sales Transaction,ecocycle_api.model_sale_transaction,ecocycle_api.group_ecocycle_api,1,1,1,0
+access_api_sale_transaction_item,Access API for Sales Transaction Item,ecocycle_api.model_sale_transaction_item,ecocycle_api.group_ecocycle_api,1,1,1,0
+
 
 

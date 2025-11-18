@@ -24,6 +24,7 @@
 
         # developed addons
         'ecocycle_base',
+        'ecocycle_transaction',
     ],
     "data": [
         # group
