@@ -3,7 +3,6 @@ import logging
 
 from odoo import models, fields, api, _
 from odoo.exceptions import UserError, ValidationError
-from ..utils.middleware import add_cors_middleware
 from starlette.middleware import Middleware
 from fastapi.middleware.cors import CORSMiddleware
 

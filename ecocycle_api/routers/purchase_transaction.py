@@ -58,3 +58,17 @@ def get_purchase_transaction_user_detail(
         model="purchase.transaction",
         schema_model=PurchaseTransactionDetail,
     )
+    
+
+@purchase_transaction_router.post("/purchase/create", response_model=SingleRecord[PurchaseTransactionDetail])
+def create_purchase(
+    env: Annotated[Environment, Depends(auth_jwt_authenticated_odoo_env)],
+    body: PurchaseTransactionPostBody,
+) -> Optional[SingleRecord[PurchaseTransactionDetail]]:
+    """Create Payment Proof"""
+
+    purchase = env['purchase.transaction']._create_api_record(body)
+    purchase.sudo().action_confirm()
+    return SingleRecord[PurchaseTransactionDetail](
+        result=PurchaseTransactionDetail.model_validate(purchase),
+    )

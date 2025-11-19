@@ -146,11 +146,11 @@ class SaleTransactionItem(models.Model):
     _description = 'Sale Transaction Item'
 
     sale_transaction_id = fields.Many2one(
-        comodel_name="sale.transaction", string="Sale", required=True, ondelete="cascade", index=True)
+        comodel_name="sale.transaction", string="Sale", required=False, ondelete="cascade", index=True)
     waste_category_id = fields.Many2one(
         comodel_name="waste.category", string="Waste Category", required=True, ondelete="restrict", index=True)
     quantity = fields.Float(string="Quantity", required=True, default=1)
-    unit_price = fields.Float(string="Unit Price", required=True)
+    unit_price = fields.Float(string="Unit Price", required=False, compute="compute_price", store=True)
     total_price = fields.Float(
         string="Total Price", compute="_compute_total", store=True)
     move_ids = fields.One2many(comodel_name="waste.move", inverse_name="sale_transaction_item_id", string="Moves", required=False)
@@ -161,9 +161,10 @@ class SaleTransactionItem(models.Model):
         for record in self:
             record.total_price = record.quantity * record.unit_price
             
-    @api.onchange('waste_category_id')
-    def _onchange_waste_category_id(self):
-        self.unit_price = self.waste_category_id.sales_price
+    @api.depends('waste_category_id')
+    def compute_price(self):
+        for rec in self:
+            rec.unit_price = rec.waste_category_id.sales_price
             
     def _preapre_waste_move(self):
         return {
