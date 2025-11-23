@@ -29,7 +29,7 @@ class FastapiEndpoint(models.Model):
             middlewares.append(
                 Middleware(
                     CORSMiddleware,
-                    allow_origins=["https://staging-ecocycle.munn.web.id","http://localhost:3000"]
+                    allow_origins=["https://staging-ecocycle.munn.web.id","http://localhost:3000"],
                     allow_credentials=True,
                     allow_methods=["*"],
                     allow_headers=["*"],

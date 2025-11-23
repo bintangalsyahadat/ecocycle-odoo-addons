@@ -4,6 +4,16 @@ from pydantic import BaseModel, Field
 from odoo.addons.ecocycle_api.schemas.base import OdooEntity, RelatedOdooEntity
 
 
+class ResPartnerAddress(OdooEntity):
+    name: str = Field(serialization_alias="name")
+    parent_id: Optional[RelatedOdooEntity] = Field(serialization_alias="parent_id")
+    street: Optional[str] = Field(serialization_alias="street")
+    city: Optional[str] = Field(serialization_alias="city")
+    state_id: Optional[RelatedOdooEntity] = Field(serialization_alias="state_id")
+    country_id: Optional[RelatedOdooEntity] = Field(serialization_alias="country_id")
+    zip: Optional[str] = Field(serialization_alias="zip")
+
+
 class ResPartner(OdooEntity):
     name: str = Field(serialization_alias="name")
     email: str = Field(serialization_alias="email")
@@ -13,6 +23,7 @@ class ResPartner(OdooEntity):
     total_point: float = Field(serialization_alias="total_point")
     is_already_daily_checkin: bool = Field(serialization_alias="is_already_daily_checkin")
     last_daily_check_on: int = Field(serialization_alias="last_daily_check_on")
+    child_ids: Optional[list[ResPartnerAddress]] = Field(serialization_alias="address")
     
 
 class ResPartnerPostBody(BaseModel):
@@ -26,3 +37,22 @@ class ResPartnerPutBody(BaseModel):
     email: Optional[str] = None
     current_ou_id: Optional[str] = None
     
+    
+class ResPartnerAddressPostBody(BaseModel):
+    name: str
+    parent_id: str
+    street: str
+    city: str
+    state: str
+    country: str
+    zip: Optional[str] = None
+    
+    
+class ResPartnerAddressPutBody(BaseModel):
+    name: Optional[str] = None
+    parent_id: Optional[str] = None
+    street: Optional[str] = None
+    city: Optional[str] = None
+    state: Optional[str] = None
+    country: Optional[str] = None
+    zip: Optional[str] = None

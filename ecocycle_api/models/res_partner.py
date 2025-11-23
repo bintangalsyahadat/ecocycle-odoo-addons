@@ -24,3 +24,13 @@ class ResPartner(models.Model):
         map_relational_field(self.env, vals, 'current_ou_id', 'operating.unit')
 
         return vals
+
+
+class ResCountry(models.Model):
+    _name = 'res.country'
+    _inherit = ['res.country', 'api.resource']
+    
+    
+class ResCountryState(models.Model):
+    _name = 'res.country.state'
+    _inherit = ['res.country.state', 'api.resource']

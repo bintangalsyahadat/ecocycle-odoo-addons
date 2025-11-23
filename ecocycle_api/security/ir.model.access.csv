@@ -1,5 +1,7 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_api_res_partner,Access API for Res Partner,ecocycle_api.model_res_partner,ecocycle_api.group_ecocycle_api,1,1,1,0
+access_api_res_country,Access API for Res Country,ecocycle_api.model_res_country,ecocycle_api.group_ecocycle_api,1,0,0,0
+access_api_res_country_state,Access API for Res Country State,ecocycle_api.model_res_country_state,ecocycle_api.group_ecocycle_api,1,0,0,0
 access_api_mail_message_subtype,Access API for Mail Message Subtype,mail.model_mail_message_subtype,ecocycle_api.group_ecocycle_api,1,0,0,0
 access_api_operating_unit,Access API for Operating Unit,ecocycle_api.model_operating_unit,ecocycle_api.group_ecocycle_api,1,0,0,0
 access_api_waste_category,Access API for Waste Category,ecocycle_api.model_waste_category,ecocycle_api.group_ecocycle_api,1,0,0,0

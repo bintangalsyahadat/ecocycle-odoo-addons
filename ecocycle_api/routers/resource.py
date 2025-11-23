@@ -101,6 +101,10 @@ def get_operating_units(
     domain = []
     if query_params.q:
         domain.append(("name", "ilike", query_params.q))
+        
+    main_ou = env.ref('operating_unit.main_operating_unit')
+    if main_ou:
+        domain.append(("id", "!=", main_ou.id))
 
     return fetch_recordset(
         env=env,

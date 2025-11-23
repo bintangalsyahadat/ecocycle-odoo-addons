@@ -48,7 +48,7 @@ def get_sale_transaction_user_detail(
 ) -> Optional[SingleRecord[SalesTransactionDetail]]:
     """Get Sales Transaction User Detail"""
 
-    domain = [("api_id", "=", api_id)]
+    domain = ['|', ("api_id", "=", api_id), ("name", "=", api_id)]
     partner = env['res.partner'].search(['|', ('api_id', '=', user_id), ('firebase_uuid', '=', user_id)], limit=1)
 
     return fetch_record(
@@ -65,7 +65,7 @@ def create_sale(
     env: Annotated[Environment, Depends(auth_jwt_authenticated_odoo_env)],
     body: SalesTransactionPostBody,
 ) -> Optional[SingleRecord[SalesTransactionDetail]]:
-    """Create Payment Proof"""
+    """Create Sale Transaction"""
 
     sale = env['sale.transaction']._create_api_record(body)
     sale.sudo().action_confirm()
