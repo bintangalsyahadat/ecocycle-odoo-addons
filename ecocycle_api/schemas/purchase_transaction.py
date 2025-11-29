@@ -5,6 +5,7 @@ from pydantic import BaseModel, Field
 from odoo.addons.ecocycle_api.schemas.base import OdooEntity, RelatedOdooEntity, APIRequestBody
 from odoo.addons.ecocycle_api.schemas.res_partner import ResPartner, ResPartnerAddress
 from odoo.addons.ecocycle_api.schemas.delivery_method import DeliveryMethod
+from odoo.addons.ecocycle_api.schemas.waste_category import WasteCategory
 
 
 class PurchaseTransaction(OdooEntity):
@@ -33,7 +34,7 @@ class PurchaseTransaction(OdooEntity):
 class PurchaseTransactionItem(OdooEntity):
     purchase_transaction_id: RelatedOdooEntity = Field(
         serialization_alias="purchase_transaction_id")
-    waste_category_id: RelatedOdooEntity = Field(
+    waste_category_id: WasteCategory = Field(
         serialization_alias="waste_category_id")
     quantity: float = Field(serialization_alias="qty")
     unit_price: float = Field(serialization_alias="unit_price")

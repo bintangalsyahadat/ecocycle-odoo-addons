@@ -12,9 +12,9 @@ class WastePicking(models.Model):
     def action_done(self):
         super(WastePicking, self).action_done()
         for rec in self:
-            if rec.sale_transaction_id:
-                rec.purchase_transaction_id.action_done()
             if rec.purchase_transaction_id:
+                rec.purchase_transaction_id.action_done()
+            if rec.sale_transaction_id:
                 rec.sale_transaction_id.action_done()
 
 

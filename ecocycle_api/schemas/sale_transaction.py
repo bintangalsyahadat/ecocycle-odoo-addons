@@ -6,6 +6,7 @@ from odoo.addons.ecocycle_api.schemas.base import OdooEntity, RelatedOdooEntity,
 from odoo.addons.ecocycle_api.schemas.res_partner import ResPartner, ResPartnerAddress
 from odoo.addons.ecocycle_api.schemas.delivery_method import DeliveryMethod
 from odoo.addons.ecocycle_api.schemas.payment_method import PaymentMethod
+from odoo.addons.ecocycle_api.schemas.waste_category import WasteCategory
 
 
 class SalesTransaction(OdooEntity):
@@ -34,7 +35,7 @@ class SalesTransaction(OdooEntity):
 class SalesTransactionItem(OdooEntity):
     sale_transaction_id: RelatedOdooEntity = Field(
         serialization_alias="sale_transaction_id")
-    waste_category_id: RelatedOdooEntity = Field(
+    waste_category_id: WasteCategory = Field(
         serialization_alias="waste_category_id")
     quantity: float = Field(serialization_alias="qty")
     unit_price: float = Field(serialization_alias="unit_price")
