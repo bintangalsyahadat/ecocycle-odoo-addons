@@ -14,6 +14,8 @@ from ..schemas.operating_unit import OperatingUnit
 from ..schemas.waste_category import WasteCategory, WasteCategoryStock, WasteCategoryStockBody
 from ..schemas.delivery_method import DeliveryMethod
 from ..schemas.payment_method import PaymentMethod
+from ..schemas.daily_check_point import DailyCheckPoint
+
 
 resource_router = APIRouter(tags=["Resource"])
     
@@ -74,6 +76,26 @@ def update_user(
         result=ResPartner.model_validate(partner),
     )
     
+@resource_router.get("/res/daily-point-reward", response_model=PaginatedRecords[DailyCheckPoint])
+def get_daily_point_reward(
+    env: Annotated[Environment, Depends(auth_jwt_authenticated_odoo_env)],
+    paging: Annotated[PaginationParams, Depends(paginator)],
+    query_params: Annotated[SearchQuery, Depends()],
+) -> PaginatedRecords[DailyCheckPoint]:
+    """Get Operating Unit list"""
+
+    domain = []
+    if query_params.q:
+        domain.append(("name", "ilike", query_params.q))
+
+    return fetch_recordset(
+        env=env,
+        paging=paging,
+        base_domain=[],
+        domain=domain,
+        model="operating.unit",
+        schema_model=DailyCheckPoint,
+    )
 
 @resource_router.post("/res/user/{api_id}/check")
 def user_daily_check(

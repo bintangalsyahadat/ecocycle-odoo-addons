@@ -49,7 +49,7 @@ class ResPartner(models.Model):
                 self.env['ecocycle.point.history'].create({
                     "partner_id": self.id,
                     "date": fields.Date.today(),
-                    "amount": daily_check_point.point
+                    "amount": daily_check_point.get_point(),
                 })
                 
                 return True

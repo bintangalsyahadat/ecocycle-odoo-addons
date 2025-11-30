@@ -6,9 +6,12 @@
       <field name="model">daily.check.point</field>
       <field name="arch" type="xml">
         <list string="Daily_check_point" editable="bottom">
+          <field name="name"/>
           <field name="sequence"/>
           <field name="point"/>
-          <field name="is_final"/>
+          <field name="is_random"/>
+          <field name="rendom_point_start"/>
+          <field name="rendom_point_end"/>
         </list>
       </field>
     </record>

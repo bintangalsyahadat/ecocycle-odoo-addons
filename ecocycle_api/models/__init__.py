@@ -3,6 +3,7 @@
 from . import api_resource
 from . import auth_validator
 from . import fastapi_endpoint
+from . import daily_check_point
 from . import res_partner
 from . import operating_unit
 from . import waste_category
