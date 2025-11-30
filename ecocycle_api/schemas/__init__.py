@@ -6,3 +6,4 @@ from . import delivery_method
 from . import payment_method
 from . import purchase_transaction
 from . import sale_transaction
+from . import daily_check_point

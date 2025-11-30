@@ -7,7 +7,7 @@ class DailyCheckPoint(models.Model):
 
     name = fields.Char(string="Label", required=True)
     sequence = fields.Integer(string="Sequence", required=True)
-    point = fields.Float(string="Point", required=True)
+    point = fields.Float(string="Point", required=False)
     rendom_point_start = fields.Float(string="Random Point Start", required=False)
     rendom_point_end = fields.Float(string="Random Point End", required=False)
     is_random = fields.Boolean(string="Is Random")
@@ -26,5 +26,5 @@ class DailyCheckPoint(models.Model):
                 2
             )
         
-        return self.point
+        return self.point or 0
     

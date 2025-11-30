@@ -82,7 +82,7 @@ def get_daily_point_reward(
     paging: Annotated[PaginationParams, Depends(paginator)],
     query_params: Annotated[SearchQuery, Depends()],
 ) -> PaginatedRecords[DailyCheckPoint]:
-    """Get Operating Unit list"""
+    """Get Dialy Reward Point"""
 
     domain = []
     if query_params.q:
@@ -93,7 +93,7 @@ def get_daily_point_reward(
         paging=paging,
         base_domain=[],
         domain=domain,
-        model="operating.unit",
+        model="daily.check.point",
         schema_model=DailyCheckPoint,
     )
 
