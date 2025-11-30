@@ -1,22 +1,50 @@
-# -*- coding: utf-8 -*-
-# from odoo import http
+import json
+from odoo import http
+from odoo.http import request, Response
 
 
-# class EcocycleTransaction(http.Controller):
-#     @http.route('/ecocycle_transaction/ecocycle_transaction', auth='public')
-#     def index(self, **kw):
-#         return "Hello, world"
+class XenditCallbackController(http.Controller):
 
-#     @http.route('/ecocycle_transaction/ecocycle_transaction/objects', auth='public')
-#     def list(self, **kw):
-#         return http.request.render('ecocycle_transaction.listing', {
-#             'root': '/ecocycle_transaction/ecocycle_transaction',
-#             'objects': http.request.env['ecocycle_transaction.ecocycle_transaction'].search([]),
-#         })
+    @http.route('/payment/xendit/callback', type='http', auth='public', csrf=False)
+    def xendit_callback(self, **kw):
+        raw_body = request.httprequest.get_data()
 
-#     @http.route('/ecocycle_transaction/ecocycle_transaction/objects/<model("ecocycle_transaction.ecocycle_transaction"):obj>', auth='public')
-#     def object(self, obj, **kw):
-#         return http.request.render('ecocycle_transaction.object', {
-#             'object': obj
-#         })
+        # parse JSON body
+        try:
+            data = json.loads(raw_body.decode("utf-8"))
+        except Exception as e:
+            return Response(
+                json.dumps({"success": False, "error": "Invalid JSON", "details": str(e)}),
+                content_type='application/json;charset=utf-8',
+                status=400
+            )
 
+        external_id = data.get("external_id")
+        status = data.get("status")
+
+        if not external_id:
+            return Response(
+                json.dumps({"success": False, "error": "Missing external_id"}),
+                content_type='application/json;charset=utf-8',
+                status=400
+            )
+
+        # example: "invoice-15" → ambil 15
+        try:
+            payment_transaction_id = int(external_id.split("-")[-1])
+        except:
+            return Response(
+                json.dumps({"success": False, "error": "Invalid external_id format"}),
+                content_type='application/json;charset=utf-8',
+                status=400
+            )
+
+        payment_transaction = request.env["payment.transaction"].sudo().browse(payment_transaction_id)
+
+        if payment_transaction.exists():
+            payment_transaction.sudo().action_update_xendit_status(status)
+
+        return Response(
+            json.dumps({"success": True}),
+            content_type='application/json;charset=utf-8'
+        )

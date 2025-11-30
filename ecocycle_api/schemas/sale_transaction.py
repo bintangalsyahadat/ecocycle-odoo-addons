@@ -7,6 +7,7 @@ from odoo.addons.ecocycle_api.schemas.res_partner import ResPartner, ResPartnerA
 from odoo.addons.ecocycle_api.schemas.delivery_method import DeliveryMethod
 from odoo.addons.ecocycle_api.schemas.payment_method import PaymentMethod
 from odoo.addons.ecocycle_api.schemas.waste_category import WasteCategory
+from odoo.addons.ecocycle_api.schemas.payment_transaction import PaymentTransaction
 
 
 class SalesTransaction(OdooEntity):
@@ -26,7 +27,7 @@ class SalesTransaction(OdooEntity):
         serialization_alias="is_self_service")
     payment_method_id: PaymentMethod = Field(
         serialization_alias="payment_method_id")
-    payment_ids: Optional[list[RelatedOdooEntity]] = Field(
+    payment_ids: Optional[list[PaymentTransaction]] = Field(
         serialization_alias="payment_ids")
     state: str = Field(serialization_alias="state")
     note: Optional[str] = Field(serialization_alias="note")

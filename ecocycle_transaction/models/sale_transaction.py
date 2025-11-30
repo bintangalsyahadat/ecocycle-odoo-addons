@@ -80,7 +80,9 @@ class SaleTransaction(models.Model):
         
     def _create_payment(self):
         self.ensure_one()
-        return self.env['payment.transaction'].create(self._prepare_payment_values())
+        payment = self.env['payment.transaction'].create(self._prepare_payment_values())
+        payment.action_create_xendit_invoice()
+        return payment
         
     def _prepare_payment_values(self):
         return {
@@ -112,7 +114,7 @@ class SaleTransaction(models.Model):
         action = {
             "type": "ir.actions.act_window",
             "res_model": "waste.picking",
-            "view_mode": "tree,form",
+            "view_mode": "list,form",
             "domain": [("id", "in", pickings.ids)],
             "context": {"default_sale_transaction_id": self.id},
         }
@@ -121,6 +123,26 @@ class SaleTransaction(models.Model):
             action.update({
                 "view_mode": "form",
                 "res_id": pickings.id,
+                "domain": False,
+            })
+        return action
+    
+    def action_open_payment(self):
+        self.ensure_one()
+        payments = self.payment_ids
+
+        action = {
+            "type": "ir.actions.act_window",
+            "res_model": "payment.transaction",
+            "view_mode": "list,form",
+            "domain": [("id", "in", payments.ids)],
+            "context": {"default_sale_transaction_id": self.id},
+        }
+
+        if len(payments) == 1:
+            action.update({
+                "view_mode": "form",
+                "res_id": payments.id,
                 "domain": False,
             })
         return action

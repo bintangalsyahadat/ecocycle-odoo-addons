@@ -29,11 +29,12 @@
                         <field name="state" widget="statusbar" statusbar_visible="draft,waiting_payment,waiting_process,sale"/>
                     </header>
                     <sheet>
-                        <!-- <div class="oe_button_box" name="button_box">
-                            <button name="action_open_pickings" type="object" class="oe_stat_button" icon="fa-truck" invisible="not picking_ids">
-                                <div>Pickings</div>
+                        <div class="oe_button_box" name="button_box">
+                            <button name="action_open_payment" type="object" class="oe_stat_button" 
+                                icon="fa-credit-card" invisible="not payment_ids" groups="base.group_no_one">
+                                <div>Payments</div>
                             </button>
-                        </div> -->
+                        </div>
 
                         <div class="oe_title" invisible="state == 'draft' and name == False">
                             <label for="name" class="oe_edit_only"/>
@@ -52,6 +53,7 @@
                                 <field name="delivery_address_id" invisible="not delivery_method_id or is_self_service" 
                                     readonly="state != 'draft'"/>
                                 <field name="note" readonly="state != 'draft'"/>
+                                <field name="payment_method_id" readonly="state != 'draft'"/>
                                 <field name="is_self_service" invisible="1"/>
                             </group>
                         </group>

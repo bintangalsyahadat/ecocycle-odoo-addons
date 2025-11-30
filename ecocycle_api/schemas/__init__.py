@@ -4,6 +4,7 @@ from . import operating_unit
 from . import waste_category
 from . import delivery_method
 from . import payment_method
+from . import payment_transaction
 from . import purchase_transaction
 from . import sale_transaction
 from . import daily_check_point
