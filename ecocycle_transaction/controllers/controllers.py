@@ -42,7 +42,7 @@ class XenditCallbackController(http.Controller):
         payment_transaction = request.env["payment.transaction"].sudo().browse(payment_transaction_id)
 
         if payment_transaction.exists():
-            payment_transaction.sudo().action_update_xendit_status(status)
+            payment_transaction.sudo().action_update_xendit_state(status)
 
         return Response(
             json.dumps({"success": True}),
