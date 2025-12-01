@@ -21,19 +21,3 @@ class FastapiEndpoint(models.Model):
             from ..routers import ecocycle_router
             return [ecocycle_router]
         return super()._get_fastapi_routers()
-
-    def _get_fastapi_app_middlewares(self):
-        middlewares = super()._get_fastapi_app_middlewares()
-
-        if self.app == "ecocycle":
-            middlewares.append(
-                Middleware(
-                    CORSMiddleware,
-                    allow_origins=["https://staging-ecocycle.munn.web.id","http://localhost:3000"],
-                    allow_credentials=True,
-                    allow_methods=["*"],
-                    allow_headers=["*"],
-                )
-            )
-
-        return middlewares
