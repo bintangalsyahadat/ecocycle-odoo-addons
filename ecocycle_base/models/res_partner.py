@@ -1,4 +1,4 @@
-from odoo import api, fields, models
+from odoo import api, fields, models, _
 
 class ResPartner(models.Model):
     _inherit = 'res.partner'
@@ -12,6 +12,7 @@ class ResPartner(models.Model):
     is_already_daily_checkin = fields.Boolean(string="Is Already Daily Checkin", compute="compute_is_already_daily_checkin", store=True)
     last_daily_check_at = fields.Date(string="Last Check-In At", required=False)
     last_daily_check_on = fields.Integer(string="Last Check-In On", required=False, default=0)
+    ecoplanner_ids = fields.One2many(comodel_name="ecocycle.planner", inverse_name="partner_id", string="EcoPlanner", required=False)
 
     @api.depends("coin_history_ids")
     def _compute_total_coin(self):
@@ -54,3 +55,15 @@ class ResPartner(models.Model):
                 
                 return True
         return False
+    
+    def action_open_planner(self):
+        self.ensure_one()
+        return {
+            'type': 'ir.actions.act_window',
+            'name': _("EcoPlanner"),
+            'res_model': 'ecocycle.planner',
+            'view_mode': 'list',
+            'domain': [('partner_id', '=', self.id)],
+            'context': {'default_partner_id': self.id},
+            'target': 'current',
+        }

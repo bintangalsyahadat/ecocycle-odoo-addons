@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data noupdate="0">
+    <record id="list_ecocycle_planner" model="ir.ui.view">
+      <field name="name">Ecocycle_planner List View</field>
+      <field name="model">ecocycle.planner</field>
+      <field name="arch" type="xml">
+        <list editable="bottom" string="Ecocycle_planner">
+          <field name="date"/>
+          <field name="partner_id"/>
+          <field name="point_rewarded" readonly="1"/>
+          <field name="state" readonly="1" widget="badge"/>
+        </list>
+      </field>
+    </record>
+  </data>
+</odoo>

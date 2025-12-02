@@ -8,6 +8,8 @@ access_delivery_method,Delivery Method Access: CRUD,model_ecocycle_delivery_meth
 access_coin_history,Coin History Access: CRUD,model_ecocycle_coin_history,base.group_user,1,1,1,1
 access_daily_check_point_history,Point History Access: CRUD,model_ecocycle_point_history,base.group_user,1,1,1,1
 access_daily_check_point,Daily Check-In Point Access: CRUD,model_daily_check_point,base.group_user,1,1,1,1
+access_ecocycle_planner,EcoCycle Planner Access: CRUD,model_ecocycle_planner,base.group_user,1,1,1,1
+
 
 
 

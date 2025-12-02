@@ -1,0 +1,24 @@
+<!-- data/cron_ecocycle_planner.xml -->
+<odoo>
+    <data noupdate="1">
+        <!-- Cron: send WhatsApp for pending planners whose date is today -->
+        <record id="ir_cron_ecocycle_planner_whatsapp" model="ir.cron">
+            <field name="name">EcoCycle Planner - Send WhatsApp</field>
+            <field name="model_id" ref="model_ecocycle_planner"/>
+            <field name="code">model.cron_send_whatsapp()</field>
+            <field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+            <field name="active">True</field>
+        </record>
+
+        <!-- Cron: Expire old pending planners -->
+        <record id="ir_cron_ecocycle_planner_expire" model="ir.cron">
+            <field name="name">EcoCycle Planner - Auto Expire</field>
+            <field name="model_id" ref="model_ecocycle_planner"/>
+            <field name="code">model.cron_expire_planners()</field>
+            <field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+            <field name="active">True</field>
+        </record>
+    </data>
+</odoo>

@@ -34,6 +34,7 @@
         # 'security/res_groups.xml',
 
         # data
+        'data/ir_cron.xml',
         'data/ir_sequence.xml',
 
         # global action
@@ -46,6 +47,7 @@
         'views/common/payment_method.xml',
         'views/common/delivery_method.xml',
         'views/common/daily_check_point.xml',
+        'views/common/ecocycle_planner.xml',
 
         # qweb
         # 'views/template/template.xml',
