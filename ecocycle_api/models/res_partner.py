@@ -21,7 +21,15 @@ class ResPartner(models.Model):
         vals: Optional[dict] = None
     ):
         vals = super()._prepare_api_values(body, vals)
-        map_relational_field(self.env, vals, 'current_ou_id', 'operating.unit')
+        
+        if vals.get('current_ou_id'):
+            map_relational_field(self.env, vals, 'current_ou_id', 'operating.unit')
+        if vals.get('parent_id'):
+            map_relational_field(self.env, vals, 'parent_id', 'res.partner')
+        if vals.get('state_id'):
+            map_relational_field(self.env, vals, 'state_id', 'res.country.state')
+        if vals.get('country_id'):
+            map_relational_field(self.env, vals, 'country_id', 'res.country')
 
         return vals
 

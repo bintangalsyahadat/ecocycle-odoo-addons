@@ -48,8 +48,8 @@ class ResPartnerAddressPostBody(BaseModel):
     phone: Optional[str]
     street: str
     city: str
-    state: str
-    country: str
+    state_id: str
+    country_id: str
     zip: Optional[str] = None
     
     
@@ -59,6 +59,19 @@ class ResPartnerAddressPutBody(BaseModel):
     phone: Optional[str] = None
     street: Optional[str] = None
     city: Optional[str] = None
-    state: Optional[str] = None
-    country: Optional[str] = None
+    state_id: Optional[str] = None
+    country_id: Optional[str] = None
     zip: Optional[str] = None
+
+
+class ResCountry(OdooEntity):
+    name: str = Field(serialization_alias="name")
+    
+class ResCountryState(OdooEntity):
+    name: str = Field(serialization_alias="name")
+    country_id: RelatedOdooEntity = Field(serialization_alias="country_id")
+    
+class ResCountryStateQuery(BaseModel):
+    name: Optional[str] = None
+    country_id: Optional[str] = None
+    

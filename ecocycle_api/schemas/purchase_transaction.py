@@ -6,6 +6,7 @@ from odoo.addons.ecocycle_api.schemas.base import OdooEntity, RelatedOdooEntity,
 from odoo.addons.ecocycle_api.schemas.res_partner import ResPartner, ResPartnerAddress
 from odoo.addons.ecocycle_api.schemas.delivery_method import DeliveryMethod
 from odoo.addons.ecocycle_api.schemas.waste_category import WasteCategory
+from odoo.addons.ecocycle_api.schemas.planner import Planner
 
 
 class PurchaseTransaction(OdooEntity):
@@ -29,6 +30,9 @@ class PurchaseTransaction(OdooEntity):
         serialization_alias="is_self_service")
     state: str = Field(serialization_alias="state")
     note: Optional[str] = Field(serialization_alias="note")
+    planner_id: Optional[Planner] = Field(
+        serialization_alias="planner_id"
+    )
 
 
 class PurchaseTransactionItem(OdooEntity):

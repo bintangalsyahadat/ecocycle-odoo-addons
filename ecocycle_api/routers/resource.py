@@ -10,6 +10,8 @@ from odoo.addons.ecocycle_api.utils.records import fetch_record, fetch_recordset
 from odoo.addons.ecocycle_api.dependencies import paginator, auth_jwt_authenticated_odoo_env
 from ..schemas.base import SearchQuery
 from ..schemas.res_partner import ResPartner, ResPartnerPostBody, ResPartnerPutBody
+from ..schemas.res_partner import ResPartnerAddress, ResPartnerAddressPostBody, ResPartnerAddressPutBody
+from ..schemas.res_partner import ResCountry, ResCountryState, ResCountryStateQuery
 from ..schemas.operating_unit import OperatingUnit
 from ..schemas.waste_category import WasteCategory, WasteCategoryStock, WasteCategoryStockBody
 from ..schemas.delivery_method import DeliveryMethod
@@ -74,6 +76,133 @@ def update_user(
     
     return SingleRecord[ResPartner](
         result=ResPartner.model_validate(partner),
+    )
+    
+
+@resource_router.get("/res/user/{user_id}/address", response_model=PaginatedRecords[ResPartnerAddress])
+def get_user_address(
+    env: Annotated[Environment, Depends(auth_jwt_authenticated_odoo_env)],
+    paging: Annotated[PaginationParams, Depends(paginator)],
+    query_params: Annotated[SearchQuery, Depends()],
+    user_id: str
+) -> PaginatedRecords[ResPartnerAddress]:
+    """Get User Address list"""
+
+    domain = []
+    if query_params.q:
+        domain.append(("name", "ilike", query_params.q))
+        
+    user = env['res.partner'].search(['|', ('api_id', '=', user_id), ('firebase_uuid', '=', user_id)], limit=1)
+
+    return fetch_recordset(
+        env=env,
+        paging=paging,
+        base_domain=[("parent_id", "=", user.id), ("active", "=", True)],
+        domain=domain,
+        model="res.partner",
+        schema_model=ResPartnerAddress,
+    )
+    
+
+@resource_router.get("/res/user/{user_id}/address/{api_id}", response_model=SingleRecord[ResPartnerAddress])
+def get_user_address_detail(
+    env: Annotated[Environment, Depends(auth_jwt_authenticated_odoo_env)],
+    api_id: str,
+    user_id: str
+) -> Optional[SingleRecord[ResPartnerAddress]]:
+    """Get User Address Detail"""
+
+    user = env['res.partner'].search(['|', ('api_id', '=', user_id), ('firebase_uuid', '=', user_id)], limit=1)
+    domain = [('parent_id', "=", user.id), ("api_id", "=", api_id)]
+
+    return fetch_record(
+        env=env,
+        base_domain=[("active", "=", True)],
+        domain=domain,
+        model="res.partner",
+        schema_model=ResPartnerAddress,
+    )
+    
+
+@resource_router.post("/res/user/address", response_model=SingleRecord[ResPartnerAddress])
+def create_user_address(
+    body: ResPartnerAddressPostBody,
+    env: Annotated[Environment, Depends(auth_jwt_authenticated_odoo_env)],
+) -> Optional[SingleRecord[ResPartnerAddress]]:
+    """Create User Address"""
+
+    address = env['res.partner']._create_api_record(body)
+        
+    return SingleRecord[ResPartnerAddress](
+        result=ResPartnerAddress.model_validate(address),
+    )
+
+
+@resource_router.put("/res/user/address/{api_id}", response_model=SingleRecord[ResPartnerAddress])
+def update_user_address(
+    env: Annotated[Environment, Depends(auth_jwt_authenticated_odoo_env)],
+    api_id: str,
+    body: ResPartnerAddressPutBody,
+) -> Optional[SingleRecord[ResPartnerAddress]]:
+    """Update User Address"""
+
+    domain = [("api_id", "=", api_id)]
+    partner = env['res.partner'].search(domain)
+    if not partner:
+        raise HTTPException(status_code=404, detail="Record not found")
+
+    partner = partner.with_context(
+        by_alias=False)._update_api_record(partner.api_id, body)
+    
+    return SingleRecord[ResPartnerAddress](
+        result=ResPartnerAddress.model_validate(partner),
+    )
+
+
+@resource_router.get("/res/country/state", response_model=PaginatedRecords[ResCountryState])
+def get_country_state(
+    env: Annotated[Environment, Depends(auth_jwt_authenticated_odoo_env)],
+    paging: Annotated[PaginationParams, Depends(paginator)],
+    query_params: Annotated[ResCountryStateQuery, Depends()],
+) -> PaginatedRecords[ResCountryState]:
+    """Get Country State list"""
+
+    domain = []
+    if query_params.name:
+        domain.append(("name", "ilike", query_params.name))
+    if query_params.country_id:
+        country = env['res.country'].search([('api_id', '=', query_params.country_id)], limit=1)
+        domain.append(("country_id", "=", country.id))
+
+    return fetch_recordset(
+        env=env,
+        paging=paging,
+        base_domain=[],
+        domain=domain,
+        model="res.country.state",
+        schema_model=ResCountryState,
+    )
+    
+
+@resource_router.get("/res/country", response_model=PaginatedRecords[ResCountry])
+def get_country(
+    env: Annotated[Environment, Depends(auth_jwt_authenticated_odoo_env)],
+    paging: Annotated[PaginationParams, Depends(paginator)],
+    query_params: Annotated[SearchQuery, Depends()],
+) -> PaginatedRecords[ResCountry]:
+    """Get Country list"""
+
+    domain = []
+    if query_params.q:
+        domain.append(("name", "ilike", query_params.q))
+
+    return fetch_recordset(
+        env=env,
+        paging=paging,
+        base_domain=[],
+        domain=domain,
+        model="res.country",
+        schema_model=ResCountry,
     )
     
 @resource_router.get("/res/daily-point-reward", response_model=PaginatedRecords[DailyCheckPoint])
