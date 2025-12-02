@@ -12,5 +12,6 @@ from . import payment_method
 from . import waste_picking
 from . import purchase_transaction
 from . import sale_transaction
+from . import ecocycle_planner
 # from . import ir_attachment
 

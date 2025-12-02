@@ -14,6 +14,8 @@ access_api_purchase_transaction_item,Access API for Purchase Transaction Item,ec
 access_api_sale_transaction,Access API for Sales Transaction,ecocycle_api.model_sale_transaction,ecocycle_api.group_ecocycle_api,1,1,1,0
 access_api_sale_transaction_item,Access API for Sales Transaction Item,ecocycle_api.model_sale_transaction_item,ecocycle_api.group_ecocycle_api,1,1,1,0
 access_api_payment_transaction,Access API for Payment Transaction,ecocycle_api.model_payment_transaction,ecocycle_api.group_ecocycle_api,1,1,1,0
+access_api_ecocycle_planner,Access API for EcoCycle Planner,ecocycle_api.model_ecocycle_planner,ecocycle_api.group_ecocycle_api,1,1,1,1
+
 
 
 

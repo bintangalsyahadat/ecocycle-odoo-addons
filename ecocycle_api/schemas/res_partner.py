@@ -7,6 +7,7 @@ from odoo.addons.ecocycle_api.schemas.base import OdooEntity, RelatedOdooEntity
 class ResPartnerAddress(OdooEntity):
     name: str = Field(serialization_alias="name")
     parent_id: Optional[RelatedOdooEntity] = Field(serialization_alias="parent_id")
+    phone: Optional[str] = Field(serialization_alias="phone")
     street: Optional[str] = Field(serialization_alias="street")
     city: Optional[str] = Field(serialization_alias="city")
     state_id: Optional[RelatedOdooEntity] = Field(serialization_alias="state_id")
@@ -17,6 +18,7 @@ class ResPartnerAddress(OdooEntity):
 class ResPartner(OdooEntity):
     name: str = Field(serialization_alias="name")
     email: str = Field(serialization_alias="email")
+    phone: Optional[str] = Field(serialization_alias="phone")
     firebase_uuid: str = Field(serialization_alias="firebase_uuid")
     current_ou_id: Optional[RelatedOdooEntity] = Field(serialization_alias="current_ou_id")
     total_coin: float = Field(serialization_alias="total_coin")
@@ -29,18 +31,21 @@ class ResPartner(OdooEntity):
 class ResPartnerPostBody(BaseModel):
     name: str
     email: str
+    phone: Optional[str]
     firebase_uuid: str
     
     
 class ResPartnerPutBody(BaseModel):
     name: Optional[str] = None
     email: Optional[str] = None
+    phone: Optional[str] = None
     current_ou_id: Optional[str] = None
     
     
 class ResPartnerAddressPostBody(BaseModel):
     name: str
     parent_id: str
+    phone: Optional[str]
     street: str
     city: str
     state: str
@@ -51,6 +56,7 @@ class ResPartnerAddressPostBody(BaseModel):
 class ResPartnerAddressPutBody(BaseModel):
     name: Optional[str] = None
     parent_id: Optional[str] = None
+    phone: Optional[str] = None
     street: Optional[str] = None
     city: Optional[str] = None
     state: Optional[str] = None
