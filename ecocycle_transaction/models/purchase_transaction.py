@@ -23,6 +23,7 @@ class PurchaseTransaction(models.Model):
     delivery_method_id = fields.Many2one(comodel_name="ecocycle.delivery.method", string="Delivery Method", required=True, ondelete="restrict", index=True)
     delivery_address_id = fields.Many2one(comodel_name="res.partner", string="Delivery Address", required=False, ondelete="restrict", index=True)
     is_self_service = fields.Boolean(related='delivery_method_id.is_self_service', store=True, readonly=True)
+    planner_id = fields.Many2one(comodel_name="ecocycle.planner", string="Planner", required=False, ondelete="restrict", index=True)
     state = fields.Selection(string="Status", selection=[
         ('draft', 'Draft'),
         ('waiting_approval', 'Waiting Approval'),
@@ -43,6 +44,10 @@ class PurchaseTransaction(models.Model):
         for rec in self:
             if rec.state == 'draft':
                 rec.name = self.env['ir.sequence'].next_by_code('purchase.transaction') or False
+                
+                planner = self.env['ecocycle.planner'].search([('date', '=', rec.date), ('state', '=', 'pending')], limit=1)
+                if planner:
+                    rec.planner_id = planner
                 
                 if rec.delivery_method_id.is_self_service:
                     rec.state = 'waiting_process'
@@ -70,6 +75,21 @@ class PurchaseTransaction(models.Model):
         for rec in self:
             if rec.state == 'waiting_process':
                 rec.state = 'purchased'
+                rec.update_partner_reward()
+                
+    def update_partner_reward(self):
+        for rec in self:
+            if rec.state == 'purchased':
+                coin = total_amount
+                point = floor(total_amount / 1000)
+                
+                if rec.planner_id:
+                    rec.planner_id.point_rewarded = point
+                    point *= 2
+                    
+                self.partner_id.update_coin(coin)
+                self.partner_id.update_point(point)
+                
                 
     def _create_picking(self):
         self.ensure_one()

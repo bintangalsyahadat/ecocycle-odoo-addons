@@ -47,11 +47,7 @@ class ResPartner(models.Model):
                 self.last_daily_check_at = fields.Date.today()
                 self.last_daily_check_on = daily_check_point.sequence
                 
-                self.env['ecocycle.point.history'].create({
-                    "partner_id": self.id,
-                    "date": fields.Date.today(),
-                    "amount": daily_check_point.get_point(),
-                })
+                self.update_point(daily_check_point.get_point())
                 
                 return True
         return False
@@ -67,3 +63,19 @@ class ResPartner(models.Model):
             'context': {'default_partner_id': self.id},
             'target': 'current',
         }
+        
+    def update_point(self, point):
+        self.ensure_one()
+        self.env['ecocycle.point.history'].create({
+            "partner_id": self.id,
+            "date": fields.Date.today(),
+            "amount": point,
+        })
+        
+    def update_coin(self, coin):
+        self.ensure_one()
+        self.env['ecocycle.coin.history'].create({
+            "partner_id": self.id,
+            "date": fields.Date.today(),
+            "amount": coin,
+        })
