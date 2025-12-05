@@ -1,4 +1,5 @@
 from odoo import api, fields, models, _
+from math import floor
 
 
 class PurchaseTransaction(models.Model):
@@ -80,8 +81,8 @@ class PurchaseTransaction(models.Model):
     def update_partner_reward(self):
         for rec in self:
             if rec.state == 'purchased':
-                coin = total_amount
-                point = floor(total_amount / 1000)
+                coin = rec.total_amount
+                point = floor(rec.total_amount / 1000)
                 
                 if rec.planner_id:
                     rec.planner_id.point_rewarded = point
