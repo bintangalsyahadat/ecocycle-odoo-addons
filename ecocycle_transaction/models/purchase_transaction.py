@@ -1,4 +1,5 @@
 from odoo import api, fields, models, _
+from math import floor
 
 
 class PurchaseTransaction(models.Model):
