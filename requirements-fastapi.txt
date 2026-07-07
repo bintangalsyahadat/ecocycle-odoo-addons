@@ -1,0 +1,7 @@
+PyJWT==2.8.0
+odoo-addon-endpoint-route-handler==18.0.1.1.0
+odoo-addon-fastapi==18.0.1.0.0.5
+odoo-addon-pydantic==18.0.1.0.0.2
+odoo-addon-extendable==18.0.1.0.1.4
+extendable-pydantic==1.4.1
+
