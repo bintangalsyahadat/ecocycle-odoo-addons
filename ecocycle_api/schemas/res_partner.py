@@ -31,7 +31,7 @@ class ResPartner(OdooEntity):
 class ResPartnerPostBody(BaseModel):
     name: str
     email: str
-    phone: Optional[str]
+    phone: Optional[str] = None
     firebase_uuid: str
     
     
@@ -45,7 +45,7 @@ class ResPartnerPutBody(BaseModel):
 class ResPartnerAddressPostBody(BaseModel):
     name: str
     parent_id: str
-    phone: Optional[str]
+    phone: Optional[str] = None
     street: str
     city: str
     state_id: str
