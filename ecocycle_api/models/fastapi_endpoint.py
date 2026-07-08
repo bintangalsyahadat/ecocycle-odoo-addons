@@ -21,3 +21,16 @@ class FastapiEndpoint(models.Model):
             from ..routers import ecocycle_router
             return [ecocycle_router]
         return super()._get_fastapi_routers()
+
+    def _get_fastapi_app_middlewares(self):
+        if self.app == "ecocycle":
+            return [
+                Middleware(
+                    CORSMiddleware,
+                    allow_origin_regex=".*",
+                    allow_credentials=True,
+                    allow_methods=["*"],
+                    allow_headers=["*"],
+                )
+            ]
+        return super()._get_fastapi_app_middlewares()
