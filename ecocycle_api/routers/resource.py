@@ -231,13 +231,17 @@ def user_daily_check(
     api_id: str,
     env: Annotated[Environment, Depends(auth_jwt_authenticated_odoo_env)],
 ):
-    
+    """User daily check-in — earn bonus points"""
     domain = ['|', ('api_id', '=', api_id), ('firebase_uuid', '=', api_id)]
     user = env['res.partner'].search(domain, limit=1)
-    daily_check = user.sudo().action_daily_check() or False
-    
+    if not user:
+        raise HTTPException(status_code=404, detail="User not found")
+
+    success = user.sudo().action_daily_check()
     return {
-        'success': daily_check
+        "success": True,
+        "message": "Check-in berhasil!" if success else "Anda sudah check-in hari ini.",
+        "already_checked": not success,
     }
 
 
