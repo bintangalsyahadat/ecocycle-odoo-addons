@@ -72,5 +72,30 @@ def create_sale(
     return SingleRecord[SalesTransactionDetail](
         result=SalesTransactionDetail.model_validate(sale),
     )
+
+
+@sale_transaction_router.put("/sale/{user_id}/{api_id}/receive", response_model=SingleRecord[SalesTransactionDetail])
+def receive_sale(
+    env: Annotated[Environment, Depends(auth_jwt_authenticated_odoo_env)],
+    user_id: str,
+    api_id: str,
+) -> Optional[SingleRecord[SalesTransactionDetail]]:
+    """User confirms receipt of delivered order (on_delivery → sale)"""
+
+    partner = env['res.partner'].search(
+        ['|', ('api_id', '=', user_id), ('firebase_uuid', '=', user_id)], limit=1)
+    domain = ['|', ("api_id", "=", api_id), ("name", "=", api_id)]
+    domain.append(("partner_id", "=", partner.id))
+    domain.append(("state", "=", "on_delivery"))
+
+    sale = env['sale.transaction'].search(domain, limit=1)
+    if not sale:
+        raise HTTPException(status_code=404, detail="No on-delivery order found")
+
+    sale.sudo().action_receive()
+    return SingleRecord[SalesTransactionDetail](
+        result=SalesTransactionDetail.model_validate(sale),
+    )
     
-    
+
+

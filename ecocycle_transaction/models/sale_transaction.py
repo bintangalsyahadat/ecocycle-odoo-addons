@@ -26,6 +26,7 @@ class SaleTransaction(models.Model):
         ('draft', 'Draft'),
         ('waiting_payment', 'Waiting Payment'),
         ('waiting_process', 'Waiting Process'),
+        ('on_delivery', 'On Delivery'),
         ('sale', 'Sale Order'),
         ('cancel', 'Cancelled')
     ], required=True, default="draft")
@@ -58,6 +59,11 @@ class SaleTransaction(models.Model):
     def action_done(self):
         for rec in self:
             if rec.state == 'waiting_process':
+                rec.state = 'on_delivery'
+
+    def action_receive(self):
+        for rec in self:
+            if rec.state == 'on_delivery':
                 rec.state = 'sale'
                 
     def _create_picking(self):
